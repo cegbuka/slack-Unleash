@@ -6,4 +6,4 @@ virtualenv -p python3 ~/venv
 cd ~/venv/bin && activate
 cd ~/slack-Unleash
 pip install --upgrade pip
-pip install -r requirements
+pip install -r requirements.txt
