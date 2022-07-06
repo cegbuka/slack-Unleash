@@ -79,17 +79,17 @@ class Setup():
                 
                 if "No such file" in ''.join(error):
                     if err:
-                        print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"       changed=0       ",colored('failed=1', 'red'),"\n\n")
+                        print(content['ssh_host']+"        ",colored(':ok=0', 'green'),"       changed=0       ",colored('failed=1', 'red'),"\n\n")
                     else:
-                        print(f"{content['ssh_host']}       ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",colored('failed=1', 'red'),"\n\n")
+                        print(content['ssh_host']+"       ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",colored('failed=1', 'red'),"\n\n")
                 elif outp:
                     outp.pop()
                     if len(''.join(outp)) == len(content):
-                        print(f"{content['ssh_host']}         ",colored(':ok=0', 'green'),"       changed=0       failed=0\n\n")
+                        print(content['ssh_host']+"          ",colored(':ok=0', 'green'),"       changed=0       failed=0\n\n")
                     else:
-                        print(f"{content['ssh_host']}         ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      failed=0\n\n")
+                        print(content['ssh_host']+"         ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      failed=0\n\n")
                 else:
-                    print(f"{content['ssh_host']}         ",colored(':ok=0', 'green'),"       changed=0      failed=0\n\n")
+                    print(content['ssh_host']+"          ",colored(':ok=0', 'green'),"       changed=0      failed=0\n\n")
                         
             else:
                 output, err = ssh.execute_command(command=command)
