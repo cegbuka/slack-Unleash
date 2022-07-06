@@ -1,12 +1,6 @@
 [prod]
 ssh_user=root   
-ssh_pass=your_pass
-ssh_host=64.2***.***.**
+ssh_pass=8iu7*IU&
+ssh_host=52.54.211.197
 ssh_port=22
 
-
-[pre-prod]
-ssh_user=root
-ssh_pass=your_pass
-ssh_host=54.2***.***.**
-ssh_port=22

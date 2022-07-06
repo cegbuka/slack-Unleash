@@ -67,7 +67,7 @@ class Setup():
                     output, err = ssh.execute_command(dest)
                     
                     logger.info(err)
-                print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"      ",changed,"       ",failed,"\n\n")
+                print(f"        ",colored(':ok=0', 'green'),"      ",changed,"       ",failed,"\n\n")
                 
 
                 
@@ -79,17 +79,17 @@ class Setup():
                 
                 if "No such file" in ''.join(error):
                     if err:
-                        print(content['ssh_host']+"        ",colored(':ok=0', 'green'),"       changed=0       ",colored('failed=1', 'red'),"\n\n")
+                        print(f"       ",colored(':ok=0', 'green'),"       changed=0       ",colored('failed=1', 'red'),"\n\n")
                     else:
-                        print(content['ssh_host']+"       ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",colored('failed=1', 'red'),"\n\n")
+                        print(f"       ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",colored('failed=1', 'red'),"\n\n")
                 elif outp:
                     outp.pop()
                     if len(''.join(outp)) == len(content):
-                        print(content['ssh_host']+"          ",colored(':ok=0', 'green'),"       changed=0       failed=0\n\n")
+                        print(f"        ",colored(':ok=0', 'green'),"       changed=0       failed=0\n\n")
                     else:
-                        print(content['ssh_host']+"         ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      failed=0\n\n")
+                        print(f"        ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      failed=0\n\n")
                 else:
-                    print(content['ssh_host']+"          ",colored(':ok=0', 'green'),"       changed=0      failed=0\n\n")
+                    print(f"         ",colored(':ok=0', 'green'),"       changed=0      failed=0\n\n")
                         
             else:
                 output, err = ssh.execute_command(command=command)
@@ -107,35 +107,35 @@ class Setup():
                     # if '0 upgraded' in samp  and '0 newly installed' in samp:
                     #     print(f"1246757757        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
                     if "present\n" == ''.join(output):
-                        print(f"{content['ssh_host']}         :ok=0        changed=0       ",failed,"\n\n")
+                        print(f"         :ok=0        changed=0       ",failed,"\n\n")
                     elif "not-present\n" == ''.join(output):
-                        print(f"{content['ssh_host']}         ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",failed,"\n\n")
+                        print(f"        ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",failed,"\n\n")
                     elif 'linked' in ''.join(output):
                         if "File exists" in ''.join(err):
-                            print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
+                            print(f"       ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
                         else:
-                            print(f"{content['ssh_host']}         :ok=0       ",colored('changed=1', 'yellow'),"      ",failed,"\n\n")
+                            print(f"        :ok=0       ",colored('changed=1', 'yellow'),"      ",failed,"\n\n")
                     elif 'alreadylink' in ''.join(output):
-                        print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
+                        print(f"        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
                     elif 'systemctl start' in command:
                         if '(running)' in ''.join(output):
-                            print(f"{content['ssh_host']}         ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",failed,"\n\n")
+                            print(f"         ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",failed,"\n\n")
                         elif '(dead)' in ''.join(output):
-                            print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"       changed=0       ",colored('failed=1', 'red'),"\n\n")
+                            print(f"       ",colored(':ok=0', 'green'),"       changed=0       ",colored('failed=1', 'red'),"\n\n")
                     elif 'systemctl stop' in command:
                         if '(dead)' in ''.join(output):
-                            print(f"{content['ssh_host']}         ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",failed,"\n\n")
+                            print(f"        ",colored(':ok=0', 'green'),"       ",colored('changed=1', 'yellow'),"      ",failed,"\n\n")
                         else:
-                            print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"       changed=0       ",colored('failed=1', 'red'),"\n\n")
+                            print(f"       ",colored(':ok=0', 'green'),"       changed=0       ",colored('failed=1', 'red'),"\n\n")
                     elif 'remove' in command and 'Removing' in ''.join(output) :
                         changes = 0
                         for item in output:
                             if item.startswith('Removing'):
                                 changes = changes+1
                         if changes != 0:
-                            print(f"{content['ssh_host']}         ",colored(':ok=0', 'green'),"       ",colored(f'changed={changes}', 'yellow'),"      ",failed,"\n\n")
+                            print(f"        ",colored(':ok=0', 'green'),"       ",colored(f'changed={changes}', 'yellow'),"      ",failed,"\n\n")
                         else:
-                            print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
+                            print(f"        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
 
                     elif 'upgrade' in command or 'install' in command:
                         changes = 0
@@ -144,12 +144,12 @@ class Setup():
                                 if f"Setting up {command}" in ''.join(output):
                                     changes = changes+1
                         if changes != 0:
-                            print(f"{content['ssh_host']}         ",colored(':ok=0', 'green'),"       ",colored(f'changed={changes}', 'yellow'),"      ",failed,"\n\n")
+                            print("         ",colored(':ok=0', 'green'),"       ",colored(f'changed={changes}', 'yellow'),"      ",failed,"\n\n")
                         else:
-                            print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
+                            print("        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
 
                     else:
-                        print(f"{content['ssh_host']}        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
+                        print("        ",colored(':ok=0', 'green'),"       changed=0       ",failed,"\n\n")
                 
 
 
