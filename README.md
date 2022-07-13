@@ -10,7 +10,7 @@ This is a rudimentary configuration management tool in python
 ## Step 1:
 ### Clone the project
 ```bash
-  git clone https://github.com/cegbuka/slack-Unleash.git
+   cd ~ && git clone https://github.com/cegbuka/slack-Unleash.git
 ```
 
 ## Step 2:
