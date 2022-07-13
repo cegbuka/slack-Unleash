@@ -17,11 +17,8 @@ This is a rudimentary configuration management tool in python
 ### Convert the boostrap script to execute
 ### Ensure to be in the home directory
 
-``` chmod +x bootstrap.sh
-```
-
-###
-``` ./bootstrap.sh
+``` chmod +x bootstrap. 
+    ./bootstrap.sh
 ```
 
 
